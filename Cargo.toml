@@ -1,6 +1,5 @@
-[package]
-name = "cargo"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+members = [
+    "calculator"
+, "password_manager"]
 
-[dependencies]
