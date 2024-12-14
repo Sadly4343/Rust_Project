@@ -1,7 +1,10 @@
 use bcrypt::{hash, verify, DEFAULT_COST};
 use std::collections::HashMap;
 use std::io::{self, stdout, Write};
+use serde::{Serialize, Deserialize}
 
+
+#[derive(Serialize, Deserialize)]
 struct UserInfo {
     username: String,
     email: String,
@@ -116,16 +119,27 @@ fn menu_choice(choice: i32) -> bool {
     }
 }
 
-fn find_password(accounts: HashMap<String, UserInfo>) {
+fn find_password(accounts: &HashMap<String, UserInfo>) {
     let username = get_user_input("username");
     let password = get_user_input("password");
     println!("you enterered{}", username);
     println!("you enterered{}", password);
-    /* 
+    
     if let Some(user_info) = accounts.get(&username) {
         if user_info.verify_password(&password) {
             println!("Password verified for {}", username);
+        }   else{
+            println!("Incorrect try again! ");
         }
         
-    } */
-}////////
+    } else {
+        println!("Invalid account try again! ");
+    }
+}
+
+fn create_account(accounts: &mut HashMap<String, UserInfo>) {
+    let username = get_user_input("Choose your username! ");
+    let password = get_user_input("Choose your account password ");
+
+
+}
