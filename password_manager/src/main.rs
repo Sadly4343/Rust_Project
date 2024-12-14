@@ -1,10 +1,9 @@
 use bcrypt::{hash, verify, DEFAULT_COST};
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
 use std::collections::HashMap;
+use std::fs::{File, OpenOptions};
 use std::io::{self, stdout, Write};
-use serde::{Serialize, Deserialize};
-use serde_json;
-use std::fs::File;
-
 
 #[derive(Serialize, Deserialize)]
 struct UserInfo {
@@ -32,15 +31,9 @@ impl UserInfo {
 }
 
 fn main() {
-
     let mut passwordmanager = PasswordManager {
         accounts: HashMap::new(),
     };
-
-    accounts.insert(
-        "John_doe".to_string(),
-        UserInfo::new("John_doe","john@example.com", )
-    )
 
     loop {
         println!("Welcome to your password manager!");
@@ -48,7 +41,6 @@ fn main() {
         println!("1. Find your password!");
         println!("2. Change your password!");
         println!("3. Create new password");
-        println!("4. Two-Factor Authentication");
         println!("5. Delete an account password");
         println!("6. Select 6 to Exit. ");
 
@@ -58,7 +50,7 @@ fn main() {
 
         io::stdin().read_line(&mut input).unwrap();
 
-        let input: Result<i32, std::num::ParseIntError> = input.trim().parse::<i32>();
+        let input: std::result::Result<i32, std::num::ParseIntError> = input.trim().parse::<i32>();
 
         match input {
             Ok(choice) if choice == 6 => {
@@ -66,7 +58,7 @@ fn main() {
                 break;
             }
             Ok(choice) => {
-                if !menu_choice(choice) {
+                if !menu_choice(choice, &mut passwordmanager) {
                     println!("Invalid Choice")
                 }
             }
@@ -95,14 +87,14 @@ fn get_user_input(input: &str) -> String {
     }
 }
 
-fn menu_choice(choice: i32) -> bool {
+fn menu_choice(choice: i32, passwordmanager: &mut PasswordManager) -> bool {
     match choice {
         1 => {
-            find_password();
+            find_password(&passwordmanager.accounts);
             true
         }
         2 => {
-            println!("yes");
+            create_account(&mut passwordmanager.accounts);
             true
         }
         3 => {
@@ -126,37 +118,39 @@ fn find_password(accounts: &HashMap<String, UserInfo>) {
     let password = get_user_input("password");
     println!("you enterered{}", username);
     println!("you enterered{}", password);
-    
+
     if let Some(user_info) = accounts.get(&username) {
         if user_info.verify_password(&password) {
             println!("Password verified for {}", username);
-        }   else{
+        } else {
             println!("Incorrect try again! ");
         }
-        
     } else {
         println!("Invalid account try again! ");
     }
 }
 
-fn create_account(accounts: &mut HashMap<String, UserInfo>) {
+fn create_account(accounts: &mut HashMap<String, UserInfo>) -> io::Result<()> {
     let username1 = get_user_input("Choose your username! ");
     let password1 = get_user_input("Choose your account password ");
     let email1 = get_user_input("Enter your email here ");
 
-    let hashed_pass1:String =hash(&password1, DEFAULT_COST).unwrap();
+    let hashed_pass1: String = hash(&password1, DEFAULT_COST).unwrap();
 
-    let new_user = UserInfo{
+    let new_user = UserInfo {
         username: username1,
         email: email1,
         hashed_pass: hashed_pass1,
-        two_factor: false
-
+        two_factor: false,
     };
 
-    let file= File::create("password_storage.json");
+    let file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("password_storage.json")?;
 
-    serde_json::to_writer_pretty(file, &new_user)?;
+    serde_json::to_writer(&file, &new_user)?;
 
-
+    accounts.insert(new_user.username.clone(), new_user);
+    Ok(())
 }
