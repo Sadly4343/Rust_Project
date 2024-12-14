@@ -1,7 +1,9 @@
 use bcrypt::{hash, verify, DEFAULT_COST};
 use std::collections::HashMap;
 use std::io::{self, stdout, Write};
-use serde::{Serialize, Deserialize}
+use serde::{Serialize, Deserialize};
+use serde_json;
+use std::fs::File;
 
 
 #[derive(Serialize, Deserialize)]
@@ -138,8 +140,23 @@ fn find_password(accounts: &HashMap<String, UserInfo>) {
 }
 
 fn create_account(accounts: &mut HashMap<String, UserInfo>) {
-    let username = get_user_input("Choose your username! ");
-    let password = get_user_input("Choose your account password ");
+    let username1 = get_user_input("Choose your username! ");
+    let password1 = get_user_input("Choose your account password ");
+    let email1 = get_user_input("Enter your email here ");
+
+    let hashed_pass1:String =hash(&password1, DEFAULT_COST).unwrap();
+
+    let new_user = UserInfo{
+        username: username1,
+        email: email1,
+        hashed_pass: hashed_pass1,
+        two_factor: false
+
+    };
+
+    let file= File::create("password_storage.json");
+
+    serde_json::to_writer_pretty(file, &new_user)?;
 
 
 }
