@@ -58,30 +58,35 @@ fn get_number_user_input() -> f64 {
         }
     }
 }
-
+//Menu choices for the user to input
 fn menu_choice(choice: i32, result: &mut f64) -> bool {
     match choice {
         1 => {
+            //calls the addition function
             *result = addition(*result);
             println!("The result is: {}", *result);
             true
         }
         2 => {
+            //Calls the subtraction function
             *result = subtraction(*result);
             println!("The result is: {}", *result);
             true
         }
         3 => {
+            //Division
             *result = division(*result);
             println!("The result is: {}", *result);
             true
         }
         4 => {
+            //Multiplication
             *result = multiplication(*result);
             println!("The result is: {}", *result);
             true
         }
         5 => {
+            //Factorial
             let number = get_number_user_input();
             let result = factorial(number as u64);
             println!("The result is: {}", result);
@@ -90,38 +95,49 @@ fn menu_choice(choice: i32, result: &mut f64) -> bool {
         _ => false,
     }
 }
+//Addition function
 fn addition(previous_result: f64) -> f64 {
+    //Gets user inputs
     let first_number = get_number_user_input();
     let second_number = get_number_user_input();
-
+    //Adds them together after and returns value.
     return first_number + second_number + previous_result;
 }
+//Subtraction function
 fn subtraction(previous_result: f64) -> f64 {
+    //User inputs
     let first_number = get_number_user_input();
     let second_number = get_number_user_input();
-
+    //Subtract and return
     return first_number - second_number + previous_result;
 }
+//Division function
 fn division(previous_result: f64) -> f64 {
+    //User inputs
     let first_number = get_number_user_input();
     let second_number = get_number_user_input();
-
+    //Returns values.
     return first_number / second_number + previous_result;
 }
+//Multiplication Function
 fn multiplication(previous_result: f64) -> f64 {
     let first_number = get_number_user_input();
     let second_number = get_number_user_input();
-
+    //Returns multiplication
     return first_number * second_number + previous_result;
 }
+//Factorial function
 fn factorial(number: u64) -> u64 {
+    //If number is larger than 20 do not complete factorial.
     if number > 20 {
         println!("Input too large, Numbers over 20 cannot be calculated. ");
         return 0;
     }
+    //If number is == 1 or == 0 return 1 Base Case.
     if number == 1 || number == 0 {
         return 1;
     } else {
+        //Return recurson of factorial to calculate number returned.
         return number * factorial(number - 1);
     }
 }
