@@ -15,21 +15,21 @@ The purpose of this software was to learn how to create projects that can test a
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+The tools used were Rust and VSC
 
-{Describe the programming language that you used and any libraries.}
+
+The programming language used was Rust and I used the Serde Libraries for Serialize, Deserialize. And also used the Bcrypt to handle Hashing the passwords for storage.
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
 
-- [Web Site Name](https://doc.rust-lang.org/cargo/index.html)
-- [Web Site Name](http://url.link.goes.here)
+- [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
+- [Rustlings]([http://url.link.goes.here](https://github.com/rust-lang/rustlings))
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
 
-- Item 1
-- Item 2
-- Item 3
+- I need to update the password manager to allow for two factor implementation for better security and password storage.
+- I want to add onto the calculator and attempt to create a display with cargo crates that offer display features.
+- I want to add onto the password manager to store the passwords securely into the AWS Cloud infrastructure through API.
