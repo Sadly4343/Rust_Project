@@ -25,7 +25,7 @@ The programming language used was Rust and I used the Serde Libraries for Serial
 {Make a list of websites that you found helpful in this project}
 
 - [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
-- [Rustlings]([http://url.link.goes.here](https://github.com/rust-lang/rustlings))
+- [Rustlings](http://url.link.goes.here](https://github.com/rust-lang/rustlings)
 
 # Future Work
 
