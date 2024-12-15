@@ -16,12 +16,10 @@ The purpose of this software was to learn how to create projects that can test a
 
 The tools used were Rust and VSC
 
-
 The programming language used was Rust and I used the Serde Libraries for Serialize, Deserialize. And also used the Bcrypt to handle Hashing the passwords for storage.
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 
 - [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
 - [Rustlings](https://github.com/rust-lang/rustlings)
