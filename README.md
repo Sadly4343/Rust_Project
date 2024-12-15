@@ -3,7 +3,7 @@
 The goal I decided for this project is that I wanted to learn more about the way rust is designed and implement my knowledge of C# and Python in order to attempt to create projects with the Rust Software Language.
 I wanted to find a language that was extremely fast and offered the ability to deal with garbage collecting within the language itself and found that Rust offers many tools to allow for proper coding and implementation of 
 the structure within the code. 
-{Provide a description of the software that you wrote to demonstrate the Rust language.}
+
 The software that I wrote to demonstrate the implementation of Rust language was creating a calculator that could do the various calculations that would be required in a simple calculator as well as factorial calculations that would be difficult to calculate by hand. The other project that I decided to work on was a Password Manager that would make use of hashing to properly store the passwords for the user.
 
 {Describe your purpose for writing this software.}
