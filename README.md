@@ -9,9 +9,8 @@ The software that I wrote to demonstrate the implementation of Rust language was
 
 The purpose of this software was to learn how to create projects that can test and implement various Rust architecture so I chose to use Struct and Impl within my code as well as using the Cargo that is built into rust with the ability to choose dependencies for the projects and offer a robust error handling system. After studying rust and learning how many errors like syntax errors are incredibly common in the industry and one of the largest coding issues present and that it works well to directly require the programmer to identify and create and handle these errors otherwise the program will not run. I found this fascinating and wanted to attempt to work on projects that could make use of that error handling and understand the language better. 
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
 
-[Software Demo Video]((https://youtu.be/_S0-6Cc-fWk))
+[Rust Demo Video](https://youtu.be/_S0-6Cc-fWk)
 
 # Development Environment
 
